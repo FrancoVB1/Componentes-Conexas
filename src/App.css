@@ -1,0 +1,146 @@
+.form-nodos {
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    padding: 28px;
+    background: #fff;
+    border: 1px solid #e8e6ed;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(20, 10, 40, 0.04);
+    font-family: system-ui, sans-serif;
+}
+
+.form-nodos h2 {
+    margin: 0;
+    color: #24212b;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.descripcion-nodos {
+    margin: 6px 0 24px;
+    color: #8b8794;
+    font-size: 13px;
+}
+
+.rango-nodos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 14px;
+}
+
+.limite {
+    color: #777180;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.operador {
+    color: #aaa3b5;
+    font-size: 18px;
+}
+
+.input-nodos {
+    width: 90px;
+    height: 48px;
+    box-sizing: border-box;
+    border: 1px solid #d8b4fe;
+    border-radius: 10px;
+    outline: none;
+    background: #faf7ff;
+    color: #7e22ce;
+    font: inherit;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-nodos:focus {
+    border-color: #9333ea;
+    box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+}
+
+.input-nodos:disabled {
+    background: #f1f0f3;
+    color: #999;
+    border-color: #ddd;
+    cursor: not-allowed;
+}
+
+@media (max-width: 400px) {
+    .form-nodos {
+        padding: 20px 16px;
+    }
+
+    .rango-nodos {
+        gap: 8px;
+    }
+
+    .input-nodos {
+        width: 70px;
+    }
+}
+
+
+.btn {
+min-height: 46px;
+padding: 10px 16px;
+border: 1px solid #d8b4fe;
+border-radius: 10px;
+font: inherit;
+font-size: 15px;
+font-weight: 600;
+cursor: pointer;
+transition: background-color 0.2s, border-color 0.2s,
+box-shadow 0.2s, color 0.2s;
+}
+
+.btn-principal {
+background: #9333ea;
+border-color: #9333ea;
+color: #fff;
+}
+
+.btn-principal:hover {
+background: #7e22ce;
+border-color: #7e22ce;
+}
+
+.btn-secundario {
+background: #faf7ff;
+border-color: #d8b4fe;
+color: #7e22ce;
+}
+
+.btn-secundario:hover {
+border-color: #9333ea;
+}
+
+.btn:focus-visible {
+    outline: 3px solid rgba(147, 51, 234, 0.2);
+    outline-offset: 2px;
+}
+
+.tipo-generacion {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.tipo-generacion .btn {
+    flex: 1;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}
