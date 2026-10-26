@@ -4,10 +4,11 @@ interface TipoGeneracion {
     tipoGen: 'Manual' | 'Aleatoria';
     setTipoGen: (tipo: 'Manual' | 'Aleatoria') => void;
     onGenerar: ()=> void;
+    onLimpiar: ()=> void;
     bloqueado: boolean;
 }
 
-export const TipoGeneracion = ({tipoGen, setTipoGen, onGenerar, bloqueado}: TipoGeneracion) => {
+export const TipoGeneracion = ({tipoGen, setTipoGen, onGenerar, onLimpiar, bloqueado}: TipoGeneracion) => {
  
   return (
     <>
@@ -28,6 +29,9 @@ export const TipoGeneracion = ({tipoGen, setTipoGen, onGenerar, bloqueado}: Tipo
 
         <button type="button" className="btn btn-secundario" onClick={onGenerar} disabled={bloqueado}>
             Siguiente
+        </button>
+        <button type="button" className="btn btn-limpiar" onClick={onLimpiar} >
+            Limpiar
         </button>
     </>
   )

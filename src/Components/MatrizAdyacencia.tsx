@@ -20,6 +20,7 @@ export const MatrizAdyacencia = ({numeroNodos}: MatrizAdyacenciaProps) => {
         )
     );
 
+    //Recorre Matriz y busca la celda donde se desea cambiar de valor
     const cambiarValor = (fila: number, columna: number) => {
         setMatriz((matrizActual) =>
             matrizActual.map((valores, i) =>
@@ -46,12 +47,22 @@ export const MatrizAdyacencia = ({numeroNodos}: MatrizAdyacenciaProps) => {
                     </thead>
 
                     <tbody>
-                    {letras.map((fila) => (
+                    {letras.map((fila, i) => (
                         <tr key={fila}>
                         <th>{fila}</th>
 
-                        {letras.map((columna) => (
-                            <td key={columna}>0</td>
+                        {letras.map((columna, j) => (
+                            <td key={columna}>
+                                <button
+                                    type="button"
+                                    className="celda-matriz"
+                                    onClick={() => cambiarValor(i, j)}
+                                    aria-label={`Conexión de ${fila} a ${columna}`}
+                                    aria-pressed={matriz[i][j] === 1}
+                                >
+                                    {matriz[i][j]}
+                                </button>
+                            </td>
                         ))}
                         </tr>
                     ))}

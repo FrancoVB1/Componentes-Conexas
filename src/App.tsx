@@ -26,11 +26,17 @@ function App() {
       setNodosGenerados(cantidad);
   };
 
+  const limpiar = () => {
+    setNumeroNodos('4');
+    setTipoGen('Manual');
+    setNodosGenerados(null);
+};
+
   return (
     <>
       <div className="form-nodos">
         <RangoNodos valor={numeroNodos} setValor={setNumeroNodos} bloqueado={nodosGenerados !== null}/>
-        <TipoGeneracion tipoGen={tipoGen} setTipoGen={setTipoGen} onGenerar={generarGrafo} bloqueado={nodosGenerados !== null}/>
+        <TipoGeneracion tipoGen={tipoGen} setTipoGen={setTipoGen} onGenerar={generarGrafo} onLimpiar={limpiar} bloqueado={nodosGenerados !== null}/>
       </div>
 
       {nodosGenerados !== null && tipoGen=='Manual' && (

@@ -1,27 +1,29 @@
+
 .form-nodos {
     width: 100%;
-    max-width: 400px;
-    box-sizing: border-box;
-    padding: 28px;
+    max-width: 420px;
+    padding: 32px;
     background: #fff;
-    border: 1px solid #e8e6ed;
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(20, 10, 40, 0.04);
+    border: 1px solid #dce8f4;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(18, 85, 150, 0.06);
     font-family: system-ui, sans-serif;
 }
 
 .form-nodos h2 {
     margin: 0;
-    color: #24212b;
-    font-size: 20px;
-    font-weight: 600;
+    color: #17324d;
+    font-size: 21px;
+    font-weight: 650;
     letter-spacing: -0.5px;
+    text-align: center;
 }
 
 .descripcion-nodos {
-    margin: 6px 0 24px;
-    color: #8b8794;
+    margin: 8px 0 24px;
+    color: #71879c;
     font-size: 13px;
+    text-align: center;
 }
 
 .rango-nodos {
@@ -29,29 +31,28 @@
     align-items: center;
     justify-content: center;
     gap: 16px;
-    margin-top: 14px;
+    margin-top: 24px;
 }
 
 .limite {
-    color: #777180;
-    font-size: 17px;
+    color: #52667a;
+    font-size: 19px;
     font-weight: 500;
 }
 
 .operador {
-    color: #aaa3b5;
-    font-size: 18px;
+    color: #91a7bb;
+    font-size: 17px;
 }
 
 .input-nodos {
     width: 90px;
     height: 48px;
-    box-sizing: border-box;
-    border: 1px solid #d8b4fe;
+    border: 1px solid #a6cff3;
     border-radius: 10px;
     outline: none;
-    background: #faf7ff;
-    color: #7e22ce;
+    background: #eaf5ff;
+    color: #0b60b0;
     font: inherit;
     font-size: 20px;
     font-weight: 600;
@@ -60,14 +61,14 @@
 }
 
 .input-nodos:focus {
-    border-color: #9333ea;
-    box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+    border-color: #127ad2;
+    box-shadow: 0 0 0 3px rgba(18, 122, 210, 0.1);
 }
 
 .input-nodos:disabled {
-    background: #f1f0f3;
-    color: #999;
-    border-color: #ddd;
+    background: #e6edf5;
+    color: #8496a8;
+    border-color: #d1deea;
     cursor: not-allowed;
 }
 
@@ -85,54 +86,55 @@
     }
 }
 
-
 .btn {
-min-height: 46px;
-padding: 10px 16px;
-border: 1px solid #d8b4fe;
-border-radius: 10px;
-font: inherit;
-font-size: 15px;
-font-weight: 600;
-cursor: pointer;
-transition: background-color 0.2s, border-color 0.2s,
-box-shadow 0.2s, color 0.2s;
+    min-height: 46px;
+    padding: 10px 16px;
+    border: 1px solid #a6cff3;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s,
+                box-shadow 0.2s, color 0.2s;
 }
 
 .btn-principal {
-background: #9333ea;
-border-color: #9333ea;
-color: #fff;
+    background: #127ad2;
+    border-color: #127ad2;
+    color: #fff;
 }
 
 .btn-principal:hover {
-background: #7e22ce;
-border-color: #7e22ce;
+    background: #0b60b0;
+    border-color: #0b60b0;
 }
 
 .btn-secundario {
-background: #faf7ff;
-border-color: #d8b4fe;
-color: #7e22ce;
+    background: #eaf5ff;
+    border-color: #a6cff3;
+    color: #0b60b0;
 }
 
 .btn-secundario:hover {
-border-color: #9333ea;
+    background: #d9eeff;
+    border-color: #127ad2;
 }
 
 .btn:focus-visible {
-    outline: 3px solid rgba(147, 51, 234, 0.2);
+    outline: 3px solid rgba(10, 197, 213, 0.45);
     outline-offset: 2px;
 }
 
 .tipo-generacion {
     display: flex;
     gap: 12px;
-    margin-top: 24px;
+    margin-top: 28px;
 }
 
 .tipo-generacion .btn {
     flex: 1;
+    min-width: 0;
 }
 
 .btn:disabled {
@@ -141,6 +143,33 @@ border-color: #9333ea;
 }
 
 .error {
-  color: red;
-  font-size: 14px;
+    color: #c83245;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.form-nodos > .btn,
+.form-nodos > button {
+    width: 100%;
+    margin-top: 14px;
+}
+
+.btn-limpiar {
+    display: block;
+    width: fit-content;
+    margin: 10px auto 0;
+    background: #06a55bef;
+    border-color: #09682c;
+    color: #fff;
+}
+
+.btn-limpiar:hover {
+    background: #078347;
+    border-color: #065f34;
+}
+
+.btn-limpiar:focus-visible {
+    outline: 3px solid rgba(22, 163, 74, 0.3);
+    outline-offset: 2px;
 }
