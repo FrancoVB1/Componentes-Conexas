@@ -1,75 +1,174 @@
-# React + TypeScript + Vite
+# Componentes Conexas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web para trabajar con grafos dirigidos, calcular la matriz de caminos mediante el algoritmo de Warshall e identificar componentes fuertemente conexas.
 
-Currently, two official plugins are available:
+El proyecto utiliza **React + TypeScript** para la interfaz gráfica y **Python + FastAPI** para el procesamiento de las matrices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tecnologías utilizadas
 
-## React Compiler
+**Frontend**
+- React
+- TypeScript
+- Vite
+- CSS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Backend**
+- Python
+- FastAPI
+- Uvicorn
+- NumPy
+- Matplotlib
 
-## Expanding the ESLint configuration
+## Requisitos previos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Antes de ejecutar el proyecto, es necesario tener instalado:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/) (incluye npm)
+- [Python](https://www.python.org/)
+- [Visual Studio Code](https://code.visualstudio.com/) (recomendado)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Instalación
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Clonar el repositorio
 
+Abrir una terminal (CMD, PowerShell o la terminal de Visual Studio Code) y ejecutar:
+
+```bash
+git clone https://github.com/FrancoVB1/Componentes-Conexas.git
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Ingresar a la carpeta del proyecto:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+cd Componentes-Conexas
 ```
+
+Abrir esta carpeta en Visual Studio Code.
+
+### 2. Instalar las dependencias del frontend
+
+Desde la carpeta principal del proyecto, ejecutar:
+
+```bash
+npm install
+```
+
+Este comando instala las dependencias de React, TypeScript y Vite registradas en `package.json`.
+
+### 3. Instalar las dependencias del backend
+
+Desde la misma carpeta principal del proyecto, ejecutar:
+
+```bash
+python -m pip install -r backend/requirements.txt
+```
+
+Este comando instala las librerías indicadas en `requirements.txt`:
+
+- FastAPI
+- Uvicorn
+- NumPy
+- Matplotlib
+
+## Ejecución del proyecto
+
+Para ejecutar la aplicación es necesario iniciar **dos servidores en terminales separadas**: uno para React y otro para Python.
+
+Ambos comandos deben ejecutarse desde la carpeta principal del proyecto (`Componentes-Conexas`).
+
+### Terminal 1: Iniciar React (frontend)
+
+Abrir la carpeta del proyecto en Visual Studio Code y abrir una terminal desde **Terminal → New Terminal**.
+
+Ejecutar:
+
+```bash
+npm run dev
+```
+
+Vite mostrará una dirección similar a:
+
+```text
+http://localhost:5173/
+```
+
+Abrir esa dirección en el navegador para utilizar la aplicación.
+
+### Terminal 2: Iniciar FastAPI (backend)
+
+Sin cerrar la primera terminal, abrir una segunda terminal en Visual Studio Code.
+
+Desde la misma carpeta principal del proyecto, ejecutar:
+
+```bash
+python -m uvicorn backend.main:app --reload
+```
+
+El servidor Python estará disponible en:
+
+```text
+http://127.0.0.1:8000
+```
+
+Para probar los endpoints de FastAPI, abrir:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+**Importante:** mantener ambas terminales abiertas mientras se utiliza la aplicación.
+
+También es posible ejecutar los comandos desde CMD o PowerShell, siempre que la terminal esté ubicada en la carpeta principal del proyecto.
+
+## Funcionalidades implementadas
+
+- Selección de la cantidad de nodos, entre 4 y 12.
+- Construcción manual de una matriz de adyacencia.
+- Modificación interactiva de las conexiones del grafo.
+- Envío de la matriz desde React a Python mediante HTTP POST.
+- Cálculo de la matriz de caminos utilizando el algoritmo de Warshall.
+- Almacenamiento de las matrices intermedias correspondientes a cada nodo considerado.
+- Visualización de la evolución del algoritmo.
+- Navegación entre las matrices mediante los botones Anterior y Siguiente.
+
+## Organización del proyecto
+
+```text
+Componentes-Conexas/
+├── backend/
+│   ├── main.py
+│   ├── algoritmos.py
+│   ├── codigo_tf_MC.py
+│   └── requirements.txt
+├── src/
+│   └── Components/
+├── public/
+├── package.json
+├── package-lock.json
+├── .gitignore
+└── README.md
+```
+
+### Descripción de los archivos principales
+
+- `backend/main.py`: configuración de FastAPI y definición de los endpoints HTTP.
+- `backend/algoritmos.py`: funciones de procesamiento del grafo, incluyendo Warshall.
+- `backend/codigo_tf_MC.py`: implementación original del programa en Python.
+- `backend/requirements.txt`: dependencias necesarias para ejecutar el backend.
+- `src/`: código de la interfaz desarrollada con React y TypeScript.
+- `package.json`: dependencias y comandos del frontend.
+- `.gitignore`: archivos y carpetas que Git debe ignorar.
+
+## Estado del proyecto
+
+El proyecto se encuentra en desarrollo.
+
+Actualmente se ha implementado la construcción manual de matrices de adyacencia, su comunicación con FastAPI y el cálculo de la matriz de caminos mediante Warshall, incluyendo la visualización de sus pasos intermedios.
+
+Las siguientes funcionalidades están previstas para futuras etapas:
+
+- Generación aleatoria de grafos desde la interfaz web.
+- Ordenamiento de filas y columnas de la matriz de caminos.
+- Identificación de componentes fuertemente conexas.
+- Representación gráfica de los grafos y sus conexiones.
