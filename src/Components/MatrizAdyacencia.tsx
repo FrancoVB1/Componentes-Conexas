@@ -25,6 +25,10 @@ export const MatrizAdyacencia = ({numeroNodos}: MatrizAdyacenciaProps) => {
 
     const [pasos, setPasos] = useState<PasoWarshall[]>([]);
     const [pasoActual, setPasoActual] = useState(0);
+    const [matrizOrdenada, setMatrizOrdenada] = useState<number[][]>([]);
+    const [orden, setOrden] = useState<number[]>([]);
+    const [mostrarOrdenada, setMostrarOrdenada] = useState(false);
+
 
 
 
@@ -75,7 +79,10 @@ export const MatrizAdyacencia = ({numeroNodos}: MatrizAdyacenciaProps) => {
 
             setPasos(todosLosPasos);
             setPasoActual(0);
-            console.log("Todos los pasos de Warshall:", todosLosPasos);
+            setMatrizOrdenada(datos.matriz_ordenada);
+            setOrden(datos.orden);
+            setMostrarOrdenada(false);
+
 
             
 
@@ -190,9 +197,56 @@ export const MatrizAdyacencia = ({numeroNodos}: MatrizAdyacenciaProps) => {
                     </button>
                 </div>
 
+                <div className='contenedor-ordenar'>
+                    <button type='button' className='btn btn-secundario' onClick={() => setMostrarOrdenada(true)} disabled={pasoActual !== pasos.length-1}>Ordenar Matriz</button>
+                </div>
+                
+                    {mostrarOrdenada && (
+                    <div>
+                        <h2>Matriz de caminos ordenada</h2>
+                    
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                        {orden.map((indice) => (
+                                            <th key={indice}>{letras[indice]}</th>
+                                        ))}
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {matrizOrdenada.map((fila, i) => (
+                                    <tr key={i}>
+                                        <th>{letras[orden[i]]}</th>
+
+                                        {fila.map((valor, j) => (
+                                            <td key={j}>
+                                                <button
+                                                    type="button"
+                                                    className="celda-matriz"
+                                                    aria-pressed={valor === 1}
+                                                    disabled
+                                                >
+                                                    {valor}
+                                                </button>
+                                            </td>
+                                        ))}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    )}
+
+                
+                
+                    
             </div>
             )}
 
+            
+            
 
         </div>
   )}

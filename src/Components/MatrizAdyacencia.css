@@ -85,3 +85,13 @@
 .navegacion-pasos .btn {
     min-width: 120px;
 }
+
+.contenedor-ordenar {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.contenedor-ordenar .btn {
+    min-width: 120px;
+}

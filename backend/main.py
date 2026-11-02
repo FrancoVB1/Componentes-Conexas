@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-from backend.algoritmos import calcular_matriz_caminos
+from .algoritmos import calcular_matriz_caminos, ordenar_matriz
     
 app = FastAPI()
 
@@ -26,8 +26,12 @@ def recibir_matriz(datos: MatrizEntrada):
 
     matriz_inicial, pasos, matriz_caminos = calcular_matriz_caminos(matriz)
 
+    matriz_ordenada, orden = ordenar_matriz(matriz_caminos)
     return {
         "matriz_inicial": matriz_inicial,
         "historial": pasos,
-        "matriz_caminos": matriz_caminos
+        "matriz_caminos": matriz_caminos,
+        "matriz_ordenada": matriz_ordenada,
+        "orden": orden
     }
+
