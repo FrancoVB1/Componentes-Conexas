@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './MatrizAdyacencia.css'
+import { ComponentesConexas } from './ComponentesConexas';
 
 interface MatrizAdyacenciaProps {
   numeroNodos: number;
@@ -28,7 +29,7 @@ export const MatrizAdyacencia = ({numeroNodos}: MatrizAdyacenciaProps) => {
     const [matrizOrdenada, setMatrizOrdenada] = useState<number[][]>([]);
     const [orden, setOrden] = useState<number[]>([]);
     const [mostrarOrdenada, setMostrarOrdenada] = useState(false);
-
+    const [matrizCaminos, setMatrizCaminos] = useState<number[][]>([]);
 
 
 
@@ -82,7 +83,7 @@ export const MatrizAdyacencia = ({numeroNodos}: MatrizAdyacenciaProps) => {
             setMatrizOrdenada(datos.matriz_ordenada);
             setOrden(datos.orden);
             setMostrarOrdenada(false);
-
+            setMatrizCaminos(datos.matriz_caminos);
 
             
 
@@ -93,8 +94,10 @@ export const MatrizAdyacencia = ({numeroNodos}: MatrizAdyacenciaProps) => {
 
   return (
         <div className="matriz-adyacencia">
+           
             <h2>Matriz de adyacencia</h2>
 
+                 {/* MATRIZ DE ADYACENCIA: */}
                 <table>
                     <thead>
                         <tr>
@@ -130,11 +133,17 @@ export const MatrizAdyacencia = ({numeroNodos}: MatrizAdyacenciaProps) => {
 
                 </table>
 
+
+
+
             <div className="contenedor-calcular">
                 <button type="button" className="btn btn-principal" onClick={enviarMatriz}>
                     Calcular
                 </button>
             </div>
+
+
+            {/* MATRIZ DE CAMINOS: */}
 
             {pasos.length > 0 && (
             <div>
@@ -144,6 +153,7 @@ export const MatrizAdyacencia = ({numeroNodos}: MatrizAdyacenciaProps) => {
                         {pasoActual ===0 ? "Matriz de adyacencia con 1 en la diagonal" : `Paso ${pasoActual} considerando el nodo ${pasos[pasoActual].nodo}`} 
                     </h3>
 
+                {/* MATRIZ DE CAMINOS: */}
                 <table>
                     <thead>
                         <tr>
@@ -177,6 +187,7 @@ export const MatrizAdyacencia = ({numeroNodos}: MatrizAdyacenciaProps) => {
                     </tbody>
                 </table>
 
+
                 <div className="navegacion-pasos">
                     <button
                         type="button"
@@ -200,11 +211,14 @@ export const MatrizAdyacencia = ({numeroNodos}: MatrizAdyacenciaProps) => {
                 <div className='contenedor-ordenar'>
                     <button type='button' className='btn btn-secundario' onClick={() => setMostrarOrdenada(true)} disabled={pasoActual !== pasos.length-1}>Ordenar Matriz</button>
                 </div>
-                
+
+                    
+
                     {mostrarOrdenada && (
                     <div>
                         <h2>Matriz de caminos ordenada</h2>
-                    
+
+                        {/* MATRIZ ORDENADA: */}
                         <table>
                             <thead>
                                 <tr>
@@ -236,15 +250,15 @@ export const MatrizAdyacencia = ({numeroNodos}: MatrizAdyacenciaProps) => {
                                 ))}
                             </tbody>
                         </table>
+
+                       
                     </div>
                     )}
-
-                
-                
-                    
+ 
             </div>
             )}
-
+            
+            {<ComponentesConexas matrizCaminos={matrizCaminos} orden={orden}/>}
             
             
 
