@@ -14,7 +14,7 @@ function App() {
 
 
 
-  const generarGrafo = () => {
+  const generarMatriz = () => {
       const cantidad = Number(numeroNodos);
 
       if ( numeroNodos.trim() === '' || !Number.isInteger(cantidad) ||cantidad < numeroMinimo || cantidad > numeroMaximo ) 
@@ -36,7 +36,7 @@ function App() {
     <>
       <div className="form-nodos">
         <RangoNodos valor={numeroNodos} setValor={setNumeroNodos} bloqueado={nodosGenerados !== null}/>
-        <TipoGeneracion tipoGen={tipoGen} setTipoGen={setTipoGen} onGenerar={generarGrafo} onLimpiar={limpiar} bloqueado={nodosGenerados !== null}/>
+        <TipoGeneracion tipoGen={tipoGen} setTipoGen={setTipoGen} onGenerar={generarMatriz} onLimpiar={limpiar} bloqueado={nodosGenerados !== null}/>
       </div>
 
       {nodosGenerados !== null && tipoGen=='Manual' && (
