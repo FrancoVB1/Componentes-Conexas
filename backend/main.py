@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-from .algoritmos import calcular_matriz_caminos, ordenar_matriz
+from .algoritmos import calcular_matriz_caminos, encontrar_componentes, ordenar_matriz
     
 app = FastAPI()
 
@@ -14,6 +14,11 @@ app.add_middleware(
 
 class MatrizEntrada(BaseModel):
     matriz: list[list[int]]
+
+class ComponentesEntrada(BaseModel):
+    matriz: list[list[int]]
+    orden: list[int]
+
 
 #Metodos:
 @app.get("/")
@@ -35,3 +40,13 @@ def recibir_matriz(datos: MatrizEntrada):
         "orden": orden
     }
 
+@app.post("/componentes")
+def recibir_componentes(datos: ComponentesEntrada):
+    matriz_caminos = datos.matriz
+    orden = datos.orden
+
+    componentes = encontrar_componentes(matriz_caminos, orden)
+
+    return {
+        "componentes": componentes
+    }

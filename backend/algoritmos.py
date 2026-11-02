@@ -68,3 +68,28 @@ def ordenar_matriz(caminos):
     matriz_ordenada = caminos[np.ix_(orden, orden)]
 
     return matriz_ordenada.tolist(), orden
+
+
+def encontrar_componentes(caminos, orden):
+    n = len(caminos)
+    visitados = set()
+    componentes = []
+
+    for nodo in orden:
+        if nodo in visitados:
+            continue
+
+        componente = []
+
+        for j in orden:
+            if (
+                j not in visitados
+                and caminos[nodo][j] == 1
+                and caminos[j][nodo] == 1
+            ):
+                componente.append(j)
+
+        visitados.update(componente)
+        componentes.append(componente)
+
+    return componentes
