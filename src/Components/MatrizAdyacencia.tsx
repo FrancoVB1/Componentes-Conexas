@@ -31,6 +31,7 @@ export const MatrizAdyacencia = ({numeroNodos, tipoGen}: MatrizAdyacenciaProps) 
     const [orden, setOrden] = useState<number[]>([]);
     const [mostrarOrdenada, setMostrarOrdenada] = useState(false);
     const [matrizCaminos, setMatrizCaminos] = useState<number[][]>([]);
+    const [error, setError] = useState('');
 
 
 
@@ -56,6 +57,7 @@ export const MatrizAdyacencia = ({numeroNodos, tipoGen}: MatrizAdyacenciaProps) 
     };
 
     const enviarMatriz = async () => {
+        setError('');
         try {
             const respuesta = await fetch('http://localhost:8000/matriz', {
                 method: 'POST',
@@ -90,6 +92,7 @@ export const MatrizAdyacencia = ({numeroNodos, tipoGen}: MatrizAdyacenciaProps) 
 
         } catch (error) {
             console.error('Error de conexión:', error);
+             setError('No se pudo calcular la matriz, Verifica la conexión con el servidor. ');
         }
     };
 
@@ -97,9 +100,40 @@ export const MatrizAdyacencia = ({numeroNodos, tipoGen}: MatrizAdyacenciaProps) 
         USE EFFECTS
     ===============================================================*/
 
-    useEffect(() => {
-    console.log('Se ejecuta');
-    }, [pasoActual]);
+    useEffect(() => {    
+      return () => {
+            if (tipoGen === 'Aleatoria') {
+                const generarAleatoria = async () => {
+                        setError('');
+                        try {
+                          
+                            const respuesta = await fetch('http://localhost:8000/aleatoria',{
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({nodos: numeroNodos})
+                            });
+
+                            if (!respuesta.ok) {
+                                throw new Error('Error al generar la matriz aleatoria')
+                            }
+
+                            const datos = await respuesta.json();
+                            setMatriz(datos.matriz)
+                            console.log(datos.matriz)
+                            
+                        } catch (error) {
+                            console.error('Error de conexión:', error);
+                            setError('No se pudo generar la matriz aleatoria. Verifica la conexión con el servidor.');
+                        }
+                };
+                
+                generarAleatoria();
+            }
+      }
+    }, [tipoGen, numeroNodos])
+    
 
   return (
         <div className="matriz-adyacencia">
@@ -151,6 +185,8 @@ export const MatrizAdyacencia = ({numeroNodos, tipoGen}: MatrizAdyacenciaProps) 
                 </button>
             </div>
 
+            {error && (<p className="error" role="alert">{error}</p>
+)}
 
             {/* MATRIZ DE CAMINOS: */}
 

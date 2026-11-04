@@ -53,7 +53,7 @@ def recibir_componentes(datos: ComponentesEntrada):
         "componentes": componentes
     }
 
-@app.post("/aleatorio")
+@app.post("/aleatoria")
 def generar_matriz_aleatoria(datos : MatrizAleatoriaEntrada):
     matriz = generar_aleatorio(datos.nodos)
 
