@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './MatrizAdyacencia.css'
 import { ComponentesConexas } from './ComponentesConexas';
 
 interface MatrizAdyacenciaProps {
   numeroNodos: number;
+  tipoGen: 'Manual' | 'Aleatoria';
 }
 
 interface PasoWarshall{
@@ -12,7 +13,7 @@ interface PasoWarshall{
 
 }
 
-export const MatrizAdyacencia = ({numeroNodos}: MatrizAdyacenciaProps) => {
+export const MatrizAdyacencia = ({numeroNodos, tipoGen}: MatrizAdyacenciaProps) => {
     /*===============================================================
         ESTADOS
     ===============================================================*/
@@ -91,6 +92,14 @@ export const MatrizAdyacencia = ({numeroNodos}: MatrizAdyacenciaProps) => {
             console.error('Error de conexión:', error);
         }
     };
+
+     /*===============================================================
+        USE EFFECTS
+    ===============================================================*/
+
+    useEffect(() => {
+    console.log('Se ejecuta');
+    }, [pasoActual]);
 
   return (
         <div className="matriz-adyacencia">

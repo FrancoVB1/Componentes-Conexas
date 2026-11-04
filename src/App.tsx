@@ -39,8 +39,8 @@ function App() {
         <TipoGeneracion tipoGen={tipoGen} setTipoGen={setTipoGen} onGenerar={generarMatriz} onLimpiar={limpiar} bloqueado={nodosGenerados !== null}/>
       </div>
 
-      {nodosGenerados !== null && tipoGen=='Manual' && (
-        <MatrizAdyacencia numeroNodos={nodosGenerados}/>
+      {nodosGenerados !== null && (
+        <MatrizAdyacencia numeroNodos={nodosGenerados} tipoGen={tipoGen}/>
       )}
     </>
   )
