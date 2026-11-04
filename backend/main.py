@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-from .algoritmos import calcular_matriz_caminos, encontrar_componentes, ordenar_matriz
+from .algoritmos import calcular_matriz_caminos, encontrar_componentes, ordenar_matriz, generar_aleatorio
     
 app = FastAPI()
 
@@ -19,6 +19,8 @@ class ComponentesEntrada(BaseModel):
     matriz: list[list[int]]
     orden: list[int]
 
+class MatrizAleatoriaEntrada(BaseModel):
+    nodos: int
 
 #Metodos:
 @app.get("/")
@@ -49,4 +51,12 @@ def recibir_componentes(datos: ComponentesEntrada):
 
     return {
         "componentes": componentes
+    }
+
+@app.post("/aleatorio")
+def generar_matriz_aleatoria(datos : MatrizAleatoriaEntrada):
+    matriz = generar_aleatorio(datos.nodos)
+
+    return {
+        "matriz": matriz
     }

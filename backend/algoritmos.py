@@ -1,6 +1,8 @@
 #=======================================================
 #FUNCIONES PARA EL PROCESAMIENTO DEL GRAFO
 #=======================================================
+import random
+
 import numpy as np
 
 def nombre_nodo(i):
@@ -93,3 +95,20 @@ def encontrar_componentes(caminos, orden):
         componentes.append(componente)
 
     return componentes
+
+
+def generar_aleatorio(n):
+
+    matriz = np.zeros((n, n), dtype=int)
+
+    probabilidad = 0.40
+
+    for i in range(n):
+
+        for j in range(n): 
+
+            if random.random() < probabilidad:
+                
+                matriz[i][j] = 1
+
+    return matriz.tolist()
