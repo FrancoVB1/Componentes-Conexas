@@ -24,18 +24,6 @@ export const RangoNodos = ({valor, setValor, bloqueado}:RangoNodosProps) => {
       }
   };
 
-  const enviarFormulario = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      if (valor.trim() === '')
-      {
-        setError('El campo es obligatorio.');
-        return;
-      }
-
-      console.log('Valor enviado:', valor);
-  };
-
-
   return (
     <>  
         <h2>Número de nodos</h2>

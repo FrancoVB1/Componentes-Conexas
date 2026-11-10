@@ -27,7 +27,8 @@ function App() {
   };
 
   const limpiar = () => {
-    setNumeroNodos('4');
+    const minimo = numeroMinimo.toString()
+    setNumeroNodos(minimo);
     setTipoGen('Manual');
     setNodosGenerados(null);
 };
